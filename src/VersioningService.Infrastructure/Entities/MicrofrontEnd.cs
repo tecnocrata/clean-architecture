@@ -15,6 +15,15 @@ namespace VersioningService.Infrastructure.Entities
 
         [Required]
         public string Name { get; set; }
+
+        [Required]
         public string Version { get; set; }
+
+        [Required]
+        public string Url { get; set; }
+
+        public DateTime PublishedAt { get; set; }
+
+        public string CreatedBy { get; set; }
     }
 }
