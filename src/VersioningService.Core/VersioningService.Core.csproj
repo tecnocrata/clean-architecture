@@ -4,4 +4,28 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Constants\" />
+    <None Remove="Models\" />
+    <None Remove="Enums\" />
+    <None Remove="Request\" />
+    <None Remove="Response\" />
+    <None Remove="Helper\" />
+    <None Remove="Interfaces\" />
+    <None Remove="Interfaces\Repositories\" />
+    <None Remove="Interfaces\Services\" />
+    <None Remove="Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Constants\" />
+    <Folder Include="Models\" />
+    <Folder Include="Enums\" />
+    <Folder Include="Request\" />
+    <Folder Include="Response\" />
+    <Folder Include="Helper\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="Interfaces\Repositories\" />
+    <Folder Include="Interfaces\Services\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
 </Project>
