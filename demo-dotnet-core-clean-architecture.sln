@@ -7,6 +7,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "demo-dotnet-core-clean-arch
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VersioningService", "VersioningService\VersioningService.csproj", "{5B029A42-F6AC-4873-8698-26E187B6040B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EA041C6E-D45B-4438-A2FD-EA92C28DA46A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{2BB0F56B-D386-43AE-A87E-206242ED4CDA}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{29C98C96-6835-4DC9-8A98-EA3AF2B210FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VersioningService.Core", "src\VersioningService.Core\VersioningService.Core.csproj", "{004AF8BE-9482-4F76-9E0B-A128AD0B9493}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,11 +29,23 @@ Global
 		{5B029A42-F6AC-4873-8698-26E187B6040B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B029A42-F6AC-4873-8698-26E187B6040B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B029A42-F6AC-4873-8698-26E187B6040B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29C98C96-6835-4DC9-8A98-EA3AF2B210FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29C98C96-6835-4DC9-8A98-EA3AF2B210FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29C98C96-6835-4DC9-8A98-EA3AF2B210FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29C98C96-6835-4DC9-8A98-EA3AF2B210FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{004AF8BE-9482-4F76-9E0B-A128AD0B9493}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{004AF8BE-9482-4F76-9E0B-A128AD0B9493}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{004AF8BE-9482-4F76-9E0B-A128AD0B9493}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{004AF8BE-9482-4F76-9E0B-A128AD0B9493}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DF501BDF-FED6-4B2C-86FD-EE3105D65282}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5B029A42-F6AC-4873-8698-26E187B6040B} = {EA041C6E-D45B-4438-A2FD-EA92C28DA46A}
+		{004AF8BE-9482-4F76-9E0B-A128AD0B9493} = {EA041C6E-D45B-4438-A2FD-EA92C28DA46A}
 	EndGlobalSection
 EndGlobal

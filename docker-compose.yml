@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  versioningservice:
+    image: ${DOCKER_REGISTRY-}versioningservice
+    build:
+      context: .
+      dockerfile: VersioningService/Dockerfile
