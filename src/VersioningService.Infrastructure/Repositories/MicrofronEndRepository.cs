@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using VersioningService.Core.Interfaces.Repositories;
 using VersioningService.Core.Models;
 using VersioningService.Infrastructure.Context;
@@ -10,9 +12,12 @@ namespace VersioningService.Infrastructure.Repositories
     public class MicrofronEndRepository : IMicrofrontEndRepository
     {
         private readonly VersioningDbContext _dbContext;
+        private readonly IMapper _mapper;
 
-        public MicrofronEndRepository()
+        public MicrofronEndRepository(VersioningDbContext dbContext, IMapper mapper)
         {
+            _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
+            mapper = _mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         public Task<bool> CreateMicrofronEnd(MicrofronEnd mfe)
@@ -25,9 +30,10 @@ namespace VersioningService.Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<MicrofronEnd>> GetAllMicrofrontEnds()
+        public async Task<IEnumerable<MicrofronEnd>> GetAllMicrofrontEnds()
         {
-            throw new NotImplementedException();
+            var mfes = await _dbContext.MicrofronEnds.ToListAsync().ConfigureAwait(false);
+            return _mapper.Map<IEnumerable<MicrofronEnd>>(mfes);
         }
 
         public Task<MicrofronEnd> GetMicrofronEndById(Guid id)
