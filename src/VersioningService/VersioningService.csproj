@@ -12,6 +12,7 @@
     <None Remove="V2\" />
     <None Remove="V1\Controllers\" />
     <None Remove="AppSettings\" />
+    <None Remove="Swashbuckle.AspNetCore" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Filters\" />
@@ -27,5 +28,8 @@
     <ProjectReference Include="..\VersioningService.Infrastructure\VersioningService.Infrastructure.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.2" />
   </ItemGroup>
 </Project>
