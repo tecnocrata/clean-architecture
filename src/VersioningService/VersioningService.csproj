@@ -6,4 +6,16 @@
     <UserSecretsId>b9915b1b-b465-4637-bdfd-bf42f9b08f25</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Filters\" />
+    <None Remove="V1\" />
+    <None Remove="V2\" />
+    <None Remove="V1\Controllers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Filters\" />
+    <Folder Include="V1\" />
+    <Folder Include="V2\" />
+    <Folder Include="V1\Controllers\" />
+  </ItemGroup>
 </Project>
