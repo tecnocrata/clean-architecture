@@ -15,6 +15,7 @@
     <None Remove="Interfaces\Repositories\" />
     <None Remove="Interfaces\Services\" />
     <None Remove="Services\" />
+    <None Remove="Newtonsoft.Json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Constants\" />
@@ -27,5 +28,8 @@
     <Folder Include="Interfaces\Repositories\" />
     <Folder Include="Interfaces\Services\" />
     <Folder Include="Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 </Project>
