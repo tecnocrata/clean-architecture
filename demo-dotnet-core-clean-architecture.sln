@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.810.9
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "demo-dotnet-core-clean-architecture", "demo-dotnet-core-clean-architecture\demo-dotnet-core-clean-architecture.csproj", "{96056B25-494B-4B89-A37F-1DA04FD2B788}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VersioningService", "VersioningService\VersioningService.csproj", "{5B029A42-F6AC-4873-8698-26E187B6040B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{96056B25-494B-4B89-A37F-1DA04FD2B788}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96056B25-494B-4B89-A37F-1DA04FD2B788}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96056B25-494B-4B89-A37F-1DA04FD2B788}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96056B25-494B-4B89-A37F-1DA04FD2B788}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B029A42-F6AC-4873-8698-26E187B6040B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B029A42-F6AC-4873-8698-26E187B6040B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B029A42-F6AC-4873-8698-26E187B6040B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B029A42-F6AC-4873-8698-26E187B6040B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DF501BDF-FED6-4B2C-86FD-EE3105D65282}
+	EndGlobalSection
+EndGlobal
