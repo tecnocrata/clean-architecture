@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using VersioningService.Core.Interfaces.Services;
 using VersioningService.Core.Models;
@@ -21,7 +22,12 @@ namespace VersioningService.V1.Controllers
         }
         // GET: api/values
         [HttpGet]
-
+        //[SwaggerOperation("GetMicrofrontEnds")]
+        [Route("getMicrofrontEnds")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]// (typeof(ApiErrorResponse), 401)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<IEnumerable<MicrofronEnd>>> Get()
         {
             var response = await _mfeService.GetAllMicrofrontEnds();
