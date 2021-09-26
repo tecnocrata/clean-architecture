@@ -20,4 +20,12 @@
     <Folder Include="V1\Controllers\" />
     <Folder Include="AppSettings\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VersioningService.Core\VersioningService.Core.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+    <ProjectReference Include="..\VersioningService.Infrastructure\VersioningService.Infrastructure.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

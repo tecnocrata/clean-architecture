@@ -16,4 +16,7 @@
     <Folder Include="Repositories\" />
     <Folder Include="Mapper\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VersioningService.Core\VersioningService.Core.csproj" />
+  </ItemGroup>
 </Project>

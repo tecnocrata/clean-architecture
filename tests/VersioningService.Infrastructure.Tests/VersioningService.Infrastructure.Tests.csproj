@@ -19,4 +19,7 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\VersioningService.Infrastructure\VersioningService.Infrastructure.csproj" />
+  </ItemGroup>
 </Project>
