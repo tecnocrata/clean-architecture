@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using VersioningService.Core.Interfaces.Repositories;
 using VersioningService.Core.Interfaces.Services;
 using VersioningService.Core.Models;
 
@@ -8,8 +9,11 @@ namespace VersioningService.Core.Services
 {
     public class MicrofrontEndService: IMicrofrontEndService
     {
-        public MicrofrontEndService()
+        private readonly IMicrofrontEndRepository _mfeRepository;
+
+        public MicrofrontEndService(IMicrofrontEndRepository mfeRepository)
         {
+            _mfeRepository = mfeRepository?? throw new ArgumentNullException(nameof(mfeRepository));
         }
 
         public Task<bool> CreateMicrofronEnd(MicrofronEnd mfe)
@@ -22,9 +26,9 @@ namespace VersioningService.Core.Services
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<MicrofronEnd>> GetAllMicrofrontEnds()
+        public async Task<IEnumerable<MicrofronEnd>> GetAllMicrofrontEnds()
         {
-            throw new NotImplementedException();
+            return await _mfeRepository.GetAllMicrofrontEnds().ConfigureAwait(false);
         }
 
         public Task<MicrofronEnd> GetMicrofronEndById(Guid id)

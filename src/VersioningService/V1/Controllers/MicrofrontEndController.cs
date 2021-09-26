@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using VersioningService.Core.Interfaces.Services;
+using VersioningService.Core.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,11 +13,23 @@ namespace VersioningService.V1.Controllers
     [Route("api/[controller]")]
     public class MicrofrontEndController : Controller
     {
+        private readonly IMicrofrontEndService _mfeService;
+
+        public MicrofrontEndController(IMicrofrontEndService mfeService)
+        {
+            _mfeService = mfeService ?? throw new ArgumentNullException(nameof(mfeService));
+        }
         // GET: api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+
+        public async Task<ActionResult<IEnumerable<MicrofronEnd>>> Get()
         {
-            return new string[] { "value1", "value2" };
+            var response = await _mfeService.GetAllMicrofrontEnds();
+            if (response == null)
+            {
+                return NoContent();
+            }
+            return Ok(response);
         }
 
         // GET api/values/5
