@@ -13,6 +13,7 @@
     <None Remove="V1\Controllers\" />
     <None Remove="AppSettings\" />
     <None Remove="Swashbuckle.AspNetCore" />
+    <None Remove="Helper\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Filters\" />
@@ -20,6 +21,7 @@
     <Folder Include="V2\" />
     <Folder Include="V1\Controllers\" />
     <Folder Include="AppSettings\" />
+    <Folder Include="Helper\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VersioningService.Core\VersioningService.Core.csproj">
