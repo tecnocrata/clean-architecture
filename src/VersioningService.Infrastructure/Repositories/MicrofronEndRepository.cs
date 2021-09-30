@@ -17,7 +17,7 @@ namespace VersioningService.Infrastructure.Repositories
         public MicrofronEndRepository(VersioningDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
-            mapper = _mapper ?? throw new ArgumentNullException(nameof(mapper));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         public Task<bool> CreateMicrofronEnd(MicrofronEnd mfe)

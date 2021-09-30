@@ -6,10 +6,16 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using VersioningService.Core.Interfaces.Repositories;
+using VersioningService.Core.Interfaces.Services;
+using VersioningService.Core.Services;
+using VersioningService.Infrastructure.Context;
+using VersioningService.Infrastructure.Repositories;
 
 namespace VersioningService
 {
@@ -27,6 +33,14 @@ namespace VersioningService
         {
 
             services.AddControllers();
+
+            //var options = new DbContextOptionsBuilder<VersioningDbContext>()
+            //.UseInMemoryDatabase(databaseName: "DiagAc2Tests")
+            //.Options;
+            services.AddDbContext<VersioningDbContext>(opts => opts.UseInMemoryDatabase("MemInDB"));
+
+            services.AddScoped<IMicrofrontEndService, MicrofrontEndService>();
+            services.AddScoped<IMicrofrontEndRepository, MicrofronEndRepository>();
 
             services.AddAutoMapper(typeof(Startup));
         }

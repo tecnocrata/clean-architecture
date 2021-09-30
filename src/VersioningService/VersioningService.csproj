@@ -14,6 +14,7 @@
     <None Remove="AppSettings\" />
     <None Remove="Swashbuckle.AspNetCore" />
     <None Remove="Helper\" />
+    <None Remove="Microsoft.EntityFrameworkCore.InMemory" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Filters\" />
@@ -33,5 +34,6 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="5.0.10" />
   </ItemGroup>
 </Project>
