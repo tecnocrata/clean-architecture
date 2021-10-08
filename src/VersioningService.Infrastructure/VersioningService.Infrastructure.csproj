@@ -12,12 +12,14 @@
     <None Remove="AutoMapper.Extensions.Microsoft.DependencyInjection" />
     <None Remove="Microsoft.EntityFrameworkCore" />
     <None Remove="Microsoft.EntityFrameworkCore.SqlServer" />
+    <None Remove="external\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\" />
     <Folder Include="Context\" />
     <Folder Include="Repositories\" />
     <Folder Include="Mapper\" />
+    <Folder Include="external\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VersioningService.Core\VersioningService.Core.csproj" />

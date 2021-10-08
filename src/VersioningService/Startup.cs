@@ -37,7 +37,7 @@ namespace VersioningService
             //var options = new DbContextOptionsBuilder<VersioningDbContext>()
             //.UseInMemoryDatabase(databaseName: "DiagAc2Tests")
             //.Options;
-            services.AddDbContext<VersioningDbContext>(opts => opts.UseInMemoryDatabase("MemInDB"));
+            services.AddDbContext<VersioningDbContext>(opts => opts.UseInMemoryDatabase("MemInDB")); // This is just a workaround for using in-memory storage temporaly
 
             services.AddScoped<IMicrofrontEndService, MicrofrontEndService>();
             services.AddScoped<IMicrofrontEndRepository, MicrofronEndRepository>();

@@ -1,0 +1,1 @@
+﻿This folder is to contain call to external services
