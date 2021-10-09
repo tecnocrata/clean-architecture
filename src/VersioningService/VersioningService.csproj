@@ -14,6 +14,7 @@
     <None Remove="Swashbuckle.AspNetCore" />
     <None Remove="Helper\" />
     <None Remove="Microsoft.EntityFrameworkCore.InMemory" />
+    <None Remove="Extensions\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Filters\" />
@@ -21,6 +22,7 @@
     <Folder Include="V2\" />
     <Folder Include="V1\Controllers\" />
     <Folder Include="Helper\" />
+    <Folder Include="Extensions\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VersioningService.Core\VersioningService.Core.csproj">
