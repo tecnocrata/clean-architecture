@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 using VersioningService.Core.Interfaces.Repositories;
 using VersioningService.Core.Interfaces.Services;
 using VersioningService.Core.Services;
@@ -33,6 +34,10 @@ namespace VersioningService
         {
 
             services.AddControllers();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "MicrofronEndService", Version = "v1" });
+            });
 
             //var options = new DbContextOptionsBuilder<VersioningDbContext>()
             //.UseInMemoryDatabase(databaseName: "DiagAc2Tests")
@@ -51,6 +56,8 @@ namespace VersioningService
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "MicrofrontEndService v1"));
             }
 
             app.UseHttpsRedirection();
