@@ -1,0 +1,49 @@
+{
+  "workbench.iconTheme": "material-icon-theme",
+  "git.enableSmartCommit": true,
+  "explorer.confirmDragAndDrop": false,
+  "explorer.confirmDelete": false,
+  "terminal.integrated.fontFamily": "Meslo LG M DZ for Powerline, Monaco, 'Courier New', monospace",
+  "eslint.format.enable": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "window.zoomLevel": 0,
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+    "vue-html": "html"
+  },
+  "editor.fontFamily": "JetBrains Mono, MesloLGS NF, fira code, Victor Mono, Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontSize": 13,
+  "editor.fontLigatures": true,
+  "[jsonc]": {
+    "editor.defaultFormatter": "HookyQR.beautify"
+  },
+  "sync.forceUpload": true,
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "HookyQR.beautify"
+  },
+  "git.autofetch": true,
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+
+  "python.pythonPath": "/usr/local/opt/python/bin/python3.7",
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  "[json]": {
+    "editor.defaultFormatter": "HookyQR.beautify"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "HookyQR.beautify"
+  },
+  "extensions.ignoreRecommendations": false,
+  "liveServer.settings.donotShowInfoMsg": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "typescript.tsdk": "node_modules\\typescript\\lib"
+}

@@ -33,10 +33,8 @@ namespace VersioningService
             services.ConfigureDependencyInjection(Configuration);
 
             services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "MicrofronEndService", Version = "v1" });
-            });
+
+            services.ConfigureSwagger();
 
             services.AddAutoMapper(typeof(Startup));
         }
