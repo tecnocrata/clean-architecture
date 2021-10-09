@@ -12,11 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using VersioningService.Core.Interfaces.Repositories;
-using VersioningService.Core.Interfaces.Services;
-using VersioningService.Core.Services;
-using VersioningService.Infrastructure.Context;
-using VersioningService.Infrastructure.Repositories;
+
 
 namespace VersioningService
 {
@@ -32,20 +28,15 @@ namespace VersioningService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.ConfigureCors();
+
+            services.ConfigureDependencyInjection(Configuration);
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MicrofronEndService", Version = "v1" });
             });
-
-            //var options = new DbContextOptionsBuilder<VersioningDbContext>()
-            //.UseInMemoryDatabase(databaseName: "DiagAc2Tests")
-            //.Options;
-            services.AddDbContext<VersioningDbContext>(opts => opts.UseInMemoryDatabase("MemInDB")); // This is just a workaround for using in-memory storage temporaly
-
-            services.AddScoped<IMicrofrontEndService, MicrofrontEndService>();
-            services.AddScoped<IMicrofrontEndRepository, MicrofronEndRepository>();
 
             services.AddAutoMapper(typeof(Startup));
         }
