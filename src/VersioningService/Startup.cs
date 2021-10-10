@@ -45,9 +45,9 @@ namespace VersioningService
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "MicrofrontEndService v1"));
             }
+
+            app.ConfigureSwagger();
 
             app.UseHttpsRedirection();
 
