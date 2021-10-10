@@ -16,6 +16,7 @@
     <None Remove="Interfaces\Services\" />
     <None Remove="Services\" />
     <None Remove="Newtonsoft.Json" />
+    <None Remove="StyleCop.Analyzers" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Constants\" />
@@ -31,5 +32,9 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
 </Project>
