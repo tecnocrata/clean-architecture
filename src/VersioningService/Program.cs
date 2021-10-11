@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using NLog;
+using NLog.Extensions.Logging;
+using NLog.Web;
 
 namespace VersioningService
 {
@@ -15,25 +18,32 @@ namespace VersioningService
         public static void Main(string[] args)
         {
             string currentEnvironment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-            IConfigurationBuilder configBuilder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings,json", optional: false, reloadOnChange: true);
+            IConfigurationBuilder configBuilder = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
             if (currentEnvironment?.Equals("Development", StringComparison.OrdinalIgnoreCase) == true)
             {
-                configBuilder.AddJsonFile($"appsetings.{currentEnvironment}.json", optional: false);
+                configBuilder.AddJsonFile($"appsettings.{currentEnvironment}.json", optional: false);
             }
+
+            IConfigurationRoot config = configBuilder.Build();
+            LogManager.Configuration = new NLogLoggingConfiguration(config.GetSection("NLog"));
+            Logger logger = LogManager.GetCurrentClassLogger();
 
             try
             {
-                // logger.Info($"{ApiConstants.FriendlyServiceName} starts running");
+                logger.Info($"{ApiConstants.FriendlyServiceName} starts running");
                 CreateWebHostBuilder(args).Build().Run();
-                // logger.Info($"{ApiConstants.FriendlyServiceName} is stopped");
+                logger.Info($"{ApiConstants.FriendlyServiceName} is stopped");
             }
-            catch (System.Exception)
+            catch (System.Exception exception)
             {
+                logger.Error(exception);
                 throw;
             }
             finally
             {
-                //LogManager.Shutdown();
+                LogManager.Shutdown();
             }
         }
 
@@ -42,6 +52,12 @@ namespace VersioningService
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                });
+                })
+                .ConfigureLogging(logging =>
+                {
+                    logging.ClearProviders();
+                    logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
+                })
+                .UseNLog();
     }
 }
