@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
@@ -13,9 +14,13 @@ namespace VersioningService
             {
                 throw new ArgumentNullException(nameof(services));
             }
+            var serviceDescripttion = File.ReadAllText(Path.Combine(AppContext.BaseDirectory, "ServiceDescription.md"));
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "MicrofronEndService", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "MicrofronEndService", Version = "v1", Description = serviceDescripttion });
+                string xmlFile = $"{typeof(SwaggerConfiguration).Assembly.GetName().Name}.xml";
+                c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFile));
+                c.CustomOperationIds(e => $"{e.ActionDescriptor.RouteValues["controller"]}_{e.ActionDescriptor.RouteValues["action"]}");
             });
 
             return services;

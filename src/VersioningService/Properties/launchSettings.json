@@ -12,7 +12,7 @@
     "VersioningService": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "weatherforecast",
+      "launchUrl": "swagger/index.html",
       "applicationUrl": "https://localhost:19726;http://localhost:34233",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
