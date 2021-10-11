@@ -12,18 +12,18 @@ using VersioningService.Core.Models;
 namespace VersioningService.V1.Controllers
 {
     [Route("api/[controller]")]
-    public class MicrofrontEndController : Controller
+    public class MicrofrontEndsController : Controller
     {
         private readonly IMicrofrontEndService _mfeService;
 
-        public MicrofrontEndController(IMicrofrontEndService mfeService)
+        public MicrofrontEndsController(IMicrofrontEndService mfeService)
         {
             _mfeService = mfeService ?? throw new ArgumentNullException(nameof(mfeService));
         }
         // GET: api/values
         [HttpGet]
-        //[SwaggerOperation("GetMicrofrontEnds")]
-        [Route("getMicrofrontEnds")]
+        // [SwaggerOperation("GetMicrofrontEnds")]
+        // [Route("getMicrofrontEnds")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]// (typeof(ApiErrorResponse), 401)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
