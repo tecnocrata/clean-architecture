@@ -18,6 +18,7 @@
     <None Remove="Newtonsoft.Json" />
     <None Remove="StyleCop.Analyzers" />
     <None Remove="Microsoft.Extensions.Logging.Abstractions" />
+    <None Remove="Exceptions\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Constants\" />
@@ -30,6 +31,7 @@
     <Folder Include="Interfaces\Repositories\" />
     <Folder Include="Interfaces\Services\" />
     <Folder Include="Services\" />
+    <Folder Include="Exceptions\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />

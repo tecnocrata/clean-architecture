@@ -12,7 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-
+using VersioningService.Middlewares;
 
 namespace VersioningService
 {
@@ -47,6 +47,10 @@ namespace VersioningService
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+            } else {
+                // For production
+                app.UseHttpCodeAndLogMiddleware();
+                app.UseHsts();
             }
 
             app.ConfigureSwagger();

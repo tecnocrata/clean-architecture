@@ -3,7 +3,7 @@ namespace VersioningService.Core.Models
 {
     public class MicrofronEnd
     {
-        public Guid Id { get; set; } //Maybe this not?
+        public Guid Id { get; set; } // Maybe this not?
 
         public string Name { get; set; }
 

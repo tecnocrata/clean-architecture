@@ -23,6 +23,7 @@
     <None Remove="NLog" />
     <None Remove="NLog.Extensions.Logging" />
     <None Remove="NLog.Web.AspNetCore" />
+    <None Remove="Middlewares\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Filters\" />
@@ -31,6 +32,7 @@
     <Folder Include="V1\Controllers\" />
     <Folder Include="Helper\" />
     <Folder Include="Extensions\" />
+    <Folder Include="Middlewares\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VersioningService.Core\VersioningService.Core.csproj">
