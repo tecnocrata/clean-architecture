@@ -31,7 +31,18 @@ namespace VersioningService.Core.Services
 
         public async Task<IEnumerable<MicrofronEnd>> GetAllMicrofrontEnds()
         {
-            return await _mfeRepository.GetAllMicrofrontEnds().ConfigureAwait(false);
+            try
+            {
+                // throw new ArgumentNullException();
+                return await _mfeRepository.GetAllMicrofrontEnds().ConfigureAwait(false);
+            }
+            catch (System.Exception ex)
+            {
+                logger.LogError($"Error while trying to call GetAllMicrofrontends in the service class, error = {ex}");
+                throw;
+            }
+
+
         }
 
         public Task<MicrofronEnd> GetMicrofronEndById(Guid id)

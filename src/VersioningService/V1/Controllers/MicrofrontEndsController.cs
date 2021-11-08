@@ -30,6 +30,7 @@ namespace VersioningService.V1.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<IEnumerable<MicrofronEnd>>> Get()
         {
+            // throw new Exception($"Error while trying to call GetMicrofrontends method");
             var response = await _mfeService.GetAllMicrofrontEnds();
             if (response == null)
             {
