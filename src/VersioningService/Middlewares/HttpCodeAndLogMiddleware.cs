@@ -52,22 +52,28 @@ namespace VersioningService.Middlewares
                 switch (ex)
                 {
                     case ApiException e:
+                        // Custom application error
                         context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                         await WriteAndLogResponseAsync(ex, context, HttpStatusCode.BadRequest, LogLevel.Error, "BadRequest Exception! " + ex.Message);
                         break;
                     case NotFoundException e:
+                        // Not found error
                         context.Response.StatusCode = (int)HttpStatusCode.NotFound;
                         await WriteAndLogResponseAsync(ex, context, HttpStatusCode.NotFound, LogLevel.Error, "Not Found Exception! " + ex.Message);
                         break;
                     case ValidationException e:
+                        // Validatoon Error
                         context.Response.StatusCode = (int)HttpStatusCode.UnprocessableEntity;
                         await WriteAndLogResponseAsync(ex, context, HttpStatusCode.UnprocessableEntity, LogLevel.Error, "Validation Exception! " + ex.Message);
                         break;
                     case AuthenticationException e:
+
                         context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
                         await WriteAndLogResponseAsync(ex, context, HttpStatusCode.Unauthorized, LogLevel.Error, "Authentication Exception! " + ex.Message);
                         break;
                     default:
+                        // Unhandled error
+                        // context.Response.StatusCode = (int) HttpStatusCode.InternalServerError;
                         await WriteAndLogResponseAsync(ex, context, HttpStatusCode.InternalServerError, LogLevel.Error, "Server Error! " + ex.Message);
                         break;
                 }

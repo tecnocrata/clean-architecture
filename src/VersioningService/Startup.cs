@@ -47,7 +47,11 @@ namespace VersioningService
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-            } else {
+                // for testing only
+                // app.UseHttpCodeAndLogMiddleware();
+            }
+            else
+            {
                 // For production
                 app.UseHttpCodeAndLogMiddleware();
                 app.UseHsts();
