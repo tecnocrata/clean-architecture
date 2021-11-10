@@ -9,13 +9,12 @@ using VersioningService.Core.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace VersioningService.V1.Controllers
+namespace VersioningService.V2.Controllers
 {
-    // [Route("api/[controller]")]
-    // [Route("api" + "/v{api-version:apiVersion}/[controller]")]
+    //[Route("api/" + ApiConstants.ServiceName + "/v{api-version:apiVersion}/[controller]")]
     // [Route("api/" + ApiConstants.ServiceName + "/v{version:apiVersion}/[controller]")]
     [ApiController]
-    [ApiVersion("1.0")]
+    [ApiVersion("2.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
     public class MicrofrontEndsController : Controller
     {

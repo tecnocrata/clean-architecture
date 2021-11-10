@@ -11,6 +11,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using VersioningService;
+using Microsoft.AspNetCore.Builder;
 
 public static class SwaggerConfiguration2
 {
@@ -43,6 +44,8 @@ public static class SwaggerConfiguration2
                 // integrate xml comments
                 options.IncludeXmlComments(XmlCommentsFilePath);
             });
+
+        return services;
     }
 
     static string XmlCommentsFilePath
@@ -53,6 +56,26 @@ public static class SwaggerConfiguration2
             var fileName = typeof(Startup).GetTypeInfo().Assembly.GetName().Name + ".xml";
             return Path.Combine(basePath, fileName);
         }
+    }
+
+    public static IApplicationBuilder ConfigureSwagger2(this IApplicationBuilder app, IApiVersionDescriptionProvider provider)
+    {
+        if (app is null)
+        {
+            throw new ArgumentNullException(nameof(app));
+        }
+        // app.UseSwagger(options => options.RouteTemplate = "swagger/"+ApiConstants.ServiceName+"/{documentName}/swagger.json");
+        app.UseSwagger();
+        app.UseSwaggerUI(
+            options =>
+            {
+                // build a swagger endpoint for each discovered API version
+                foreach (var description in provider.ApiVersionDescriptions)
+                {
+                    options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
+                }
+            });
+        return app;
     }
 }
 

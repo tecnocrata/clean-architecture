@@ -6,12 +6,11 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.OpenApi.Models;
 using VersioningService.Middlewares;
 
 namespace VersioningService
@@ -34,7 +33,8 @@ namespace VersioningService
 
             services.AddControllers();
 
-            services.ConfigureSwagger();
+            //services.ConfigureSwagger();
+            services.ConfigureSwagger2();
 
             services.AddAutoMapper(typeof(Startup));
 
@@ -42,7 +42,7 @@ namespace VersioningService
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider provider)
         {
             if (env.IsDevelopment())
             {
@@ -57,7 +57,7 @@ namespace VersioningService
                 app.UseHsts();
             }
 
-            app.ConfigureSwagger();
+            //app.ConfigureSwagger(provider);
 
             app.UseHttpsRedirection();
 
@@ -69,6 +69,9 @@ namespace VersioningService
             {
                 endpoints.MapControllers();
             });
+
+            //app.ConfigureSwagger(provider);
+            app.ConfigureSwagger2(provider);
         }
     }
 }
