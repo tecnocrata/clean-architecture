@@ -38,8 +38,6 @@ namespace VersioningService
                 options.SubstituteApiVersionInUrl = true;
             });
 
-            // services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
-
             // var serviceDescripttion = File.ReadAllText(Path.Combine(AppContext.BaseDirectory, "ServiceDescription.md"));
             services.AddSwaggerGen(c =>
             {
@@ -65,10 +63,10 @@ namespace VersioningService
                 throw new ArgumentNullException(nameof(app));
             }
             // app.UseSwagger(options => options.RouteTemplate = "swagger/"+ApiConstants.ServiceName+"/{documentName}/swagger.json");
-            app.UseSwagger(options => options.RouteTemplate = "swagger/" + ApiConstants.ServiceName + "/{documentName}/swagger.json");
+            app.UseSwagger(options => options.RouteTemplate = "swagger/{documentName}/swagger.json");
             app.UseSwaggerUI(c =>
             {
-                c.RoutePrefix = $"swagger/{ApiConstants.ServiceName}";
+                // c.RoutePrefix = $"swagger/{ApiConstants.ServiceName}";
                 // Build a swagger endpoint for each discovered API version
                 foreach (ApiVersionDescription description in provider.ApiVersionDescriptions)
                 {
@@ -92,47 +90,6 @@ namespace VersioningService
             {
                 info.Description += $"{Environment.NewLine} This API version has been deprecated";
             }
-            return info;
-        }
-    }
-
-    public class ConfigureSwaggerOptions : Microsoft.Extensions.Options.IConfigureOptions<SwaggerGenOptions>
-    {
-        readonly IApiVersionDescriptionProvider provider;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ConfigureSwaggerOptions"/> class.
-        /// </summary>
-        /// <param name="provider">The <see cref="IApiVersionDescriptionProvider">provider</see> used to generate Swagger documents.</param>
-        public ConfigureSwaggerOptions(IApiVersionDescriptionProvider provider) => this.provider = provider;
-
-        /// <inheritdoc />
-        public void Configure(SwaggerGenOptions options)
-        {
-            // add a swagger document for each discovered API version
-            // note: you might choose to skip or document deprecated API versions differently
-            foreach (var description in provider.ApiVersionDescriptions)
-            {
-                options.SwaggerDoc(description.GroupName, CreateInfoForApiVersion(description));
-            }
-        }
-
-        static OpenApiInfo CreateInfoForApiVersion(ApiVersionDescription description)
-        {
-            var info = new OpenApiInfo()
-            {
-                Title = "Sample API",
-                Version = description.ApiVersion.ToString(),
-                Description = "A sample application with Swagger, Swashbuckle, and API versioning.",
-                Contact = new OpenApiContact() { Name = "Bill Mei", Email = "bill.mei@somewhere.com" },
-                License = new OpenApiLicense() { Name = "MIT", Url = new Uri("https://opensource.org/licenses/MIT") }
-            };
-
-            if (description.IsDeprecated)
-            {
-                info.Description += " This API version has been deprecated.";
-            }
-
             return info;
         }
     }

@@ -70,8 +70,8 @@ namespace VersioningService
                 endpoints.MapControllers();
             });
 
-            //app.ConfigureSwagger(provider);
-            app.ConfigureSwagger2(provider);
+            app.ConfigureSwagger(provider);
+            //app.ConfigureSwagger2(provider);
         }
     }
 }
