@@ -29,11 +29,13 @@ namespace VersioningService
 
         public static string GetCachedSecret(string secretName)
         {
-            if (!SecretsCache.Contains(secretName))
+            if (!SecretsCache.ContainsKey(secretName))
             {
                 var secret = KeyVaultClientGetSecret(secretName);
                 SecretsCache.Add(secretName, secret);
+                return secret;
             }
+            return SecretsCache[secretName];
         }
 
         private static string KeyVaultClientGetSecret(string secretName)
@@ -41,7 +43,8 @@ namespace VersioningService
             // This method fakes the real implementation that would retrieve from AWS/Azure
             switch (secretName)
             {
-                case "versioningdb": return "Server=localhost;Database=versioningdb;Integrated Security=true;";
+                // case "prod-versioning-db-connection-string": return "Server=localhost;Database=versioningdb;Integrated Security=true;";
+                case "versioning-db-connection-string": return "Server=localhost;Database=versioningdb;Integrated Security=true;";
                 default: return "";
             }
         }
@@ -49,9 +52,7 @@ namespace VersioningService
 
     public static class GetSecret
     {
-        public static string VersioningConnectionString(string env) =>{
-            // await KeyVaultCache
-        }
-}
+        public static string VersioningConnectionString() => KeyVaultCache.GetCachedSecret($"{KeyVaultKeys.VersioningConnectionString}");
+    }
 
 }

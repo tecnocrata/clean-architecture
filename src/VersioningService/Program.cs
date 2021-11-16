@@ -33,7 +33,7 @@ namespace VersioningService
             try
             {
                 logger.Info($"{ApiConstants.FriendlyServiceName} starts running");
-                CreateWebHostBuilder(args).Build().Run();
+                CreateWebHostBuilder(args, config).Build().Run();
                 logger.Info($"{ApiConstants.FriendlyServiceName} is stopped");
             }
             catch (System.Exception exception)
@@ -47,8 +47,16 @@ namespace VersioningService
             }
         }
 
-        public static IHostBuilder CreateWebHostBuilder(string[] args) =>
+        public static IHostBuilder CreateWebHostBuilder(string[] args, IConfigurationRoot configuration) =>
             Host.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration((context, config) =>
+                {
+                    var appSettings = configuration.GetSection("AppSettings").Get<AppSettings>();
+                    if (!(bool)(appSettings?.ByPassKeyVault))
+                    {
+                        KeyVaultCache.GetVaultSecrets(context, config);
+                    }
+                })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();

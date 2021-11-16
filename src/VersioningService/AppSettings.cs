@@ -1,5 +1,5 @@
 ﻿using System;
-namespace VersioningService.AppSettings
+namespace VersioningService
 {
     public class AppSettings
     {

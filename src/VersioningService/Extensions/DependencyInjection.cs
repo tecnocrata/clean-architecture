@@ -26,7 +26,19 @@ namespace VersioningService
             // var options = new DbContextOptionsBuilder<VersioningDbContext>()
             // .UseInMemoryDatabase(databaseName: "DiagAc2Tests")
             // .Options;
-            services.AddDbContext<VersioningDbContext>(opts => opts.UseInMemoryDatabase("MemInDB")); // This is just a workaround for using in-memory storage temporaly
+            // services.AddDbContext<VersioningDbContext>(opts => opts.UseInMemoryDatabase("MemInDB")); // This is just a workaround for using in-memory storage temporaly
+
+            var appSettings = configuration.GetSection("AppSettings").Get<AppSettings>();
+            string connectionString = string.Empty;
+            if ((bool) appSettings?.ByPassKeyVault)
+            {
+                connectionString = configuration.GetConnectionString("versioningdb");
+            }
+            else
+            {
+                connectionString = GetSecret.VersioningConnectionString();
+            }
+            services.AddDbContext<VersioningDbContext>(optionsAction: opt => opt.UseSqlServer(connectionString), contextLifetime: ServiceLifetime.Transient, optionsLifetime: ServiceLifetime.Transient);
 
             services.AddScoped<IMicrofrontEndService, MicrofrontEndService>();
             services.AddScoped<IMicrofrontEndRepository, MicrofronEndRepository>();
