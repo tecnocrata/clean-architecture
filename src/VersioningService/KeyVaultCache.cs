@@ -23,7 +23,7 @@ namespace VersioningService
             var builtConfig = config.Build();
             var keyVaultName = builtConfig[$"AppSettings:KeyVaultName"];
             // BaseUri = $"https://{keyVaultName}.vault.azure.net";
-            // var secretClient = new SecretClient(new Uri(BaseUri), new DefaultAzureCredential());
+            // var secretClient = new SecretClient(new Uri(BaseUri), new DefaultAzureCredential()); //This is important to avoid exposing credentials.
             // config.AddAzureKeyVault(secretClient, new KeyVaultSecretManager());
         }
 
