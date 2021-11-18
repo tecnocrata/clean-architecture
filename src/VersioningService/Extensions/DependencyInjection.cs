@@ -30,7 +30,7 @@ namespace VersioningService
 
             var appSettings = configuration.GetSection("AppSettings").Get<AppSettings>();
             string connectionString = string.Empty;
-            if ((bool) appSettings?.ByPassKeyVault)
+            if ((bool)appSettings?.ByPassKeyVault)
             {
                 connectionString = configuration.GetConnectionString("versioningdb");
             }
@@ -42,6 +42,7 @@ namespace VersioningService
 
             services.AddScoped<IMicrofrontEndService, MicrofrontEndService>();
             services.AddScoped<IMicrofrontEndRepository, MicrofronEndRepository>();
+            services.AddHttpClient();
             return services;
         }
     }
