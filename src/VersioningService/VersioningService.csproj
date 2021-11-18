@@ -28,6 +28,12 @@
     <None Remove="Microsoft.AspNetCore.Mvc.Versioning" />
     <None Remove="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" />
     <None Remove="Swashbuckle.AspNetCore.Annotations" />
+    <None Remove="Microsoft.AspNetCore.Diagnostics.HealthChecks" />
+    <None Remove="AspNetCore.HealthChecks.MongoDb" />
+    <None Remove="AspNetCore.HealthChecks.UI.Client" />
+    <None Remove="AspNetCore.HealthChecks.UI" />
+    <None Remove="AspNetCore.HealthChecks.UI.InMemory.Storage" />
+    <None Remove="AspNetCore.HealthChecks.Uris" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Filters\" />
@@ -60,6 +66,12 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.2.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.HealthChecks" Version="2.2.0" />
+    <PackageReference Include="AspNetCore.HealthChecks.MongoDb" Version="5.0.1" />
+    <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="5.0.1" />
+    <PackageReference Include="AspNetCore.HealthChecks.UI" Version="5.0.1" />
+    <PackageReference Include="AspNetCore.HealthChecks.UI.InMemory.Storage" Version="5.0.1" />
+    <PackageReference Include="AspNetCore.HealthChecks.Uris" Version="6.0.1" />
   </ItemGroup>
   <ItemGroup>
     <None Update="ServiceDescription.md">

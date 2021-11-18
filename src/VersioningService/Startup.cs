@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using HealthChecks.UI.Client;
+using HealthChecks.UI.Configuration;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
@@ -39,6 +42,8 @@ namespace VersioningService
             services.AddAutoMapper(typeof(Startup));
 
             services.AddRouting(options => options.LowercaseUrls = true);
+
+            services.ConfigureHealthChecks(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -68,10 +73,29 @@ namespace VersioningService
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                // endpoints.MapHealthChecks("/health");
+                endpoints.MapHealthChecks("/health", new HealthCheckOptions()
+                {
+                    Predicate = _ => true,
+                    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+                });
+                app.UseHealthChecksUI(delegate (Options options)
+                {
+                    options.UIPath = "/healthchek-ui";
+                    //options.AddCustomStylesheet("./healthcheck/custom.css");
+                });
+                // endpoints.MapHealthChecks("/health", new HealthCheckOptions() { Predicate = (_) => false });
+                // endpoints.MapHealthChecks("/healthcheck", new HealthCheckOptions() { Predicate = (_) => false });
+                // endpoints.MapHealthChecks("/probe/healthcheck", new HealthCheckOptions() { Predicate = (_) => false });
+                // endpoints.MapHealthChecks("/probe/host", new HealthCheckOptions() { Predicate = (check) => check.Tags.Contains("host"), ResponseWriter = ResponseWritters.HostProbeWriter });
+                // endpoints.MapHealthChecks("/activecheck", new HealthCheckOptions() { Predicate = (check) => check.Tags.Contains("host"), ResponseWriter = ResponseWritters.HostProbeWriter });
+                // endpoints.MapHealthChecks("/probe/ready", new HealthCheckOptions() { Predicate = (check) => check.Tags.Contains("ready") });
+                // endpoints.MapHealthChecks("/probe/healthreport", new HealthCheckOptions() { Predicate = (check) => check.Tags.Contains("ready"), ResponseWriter = ResponseWritters.HealthReportWriter });
             });
 
             app.ConfigureSwagger(provider);
             //app.ConfigureSwagger2(provider);
+
         }
     }
 }
