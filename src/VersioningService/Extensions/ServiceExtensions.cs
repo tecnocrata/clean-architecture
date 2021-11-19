@@ -21,7 +21,8 @@ namespace VersioningService
             services.AddHealthChecks()
             //.AddMongoDb(configuration["ConnectionStrings:versioningdb"], name: "MongoDB", tags: new[] { "Versioning", "Database" }, failureStatus: HealthStatus.Unhealthy)
             .AddCheck<RemoteHealthCheck>("Remote Endpoints Health Check", failureStatus: HealthStatus.Unhealthy) // when we call external APIs
-            .AddCheck<MemoryHealthCheck>("Memory Health Check", failureStatus: HealthStatus.Unhealthy, tags: new[] { "Versioning Service" }); // 
+            .AddCheck<MemoryHealthCheck>("Memory Health Check", failureStatus: HealthStatus.Unhealthy, tags: new[] { "Versioning Service" }) // check memory health based on allocation memory
+            .AddUrlGroup(new Uri($"https://localhost:19726/api/v1/heartbeat/ping"), name: "Base URL", failureStatus: HealthStatus.Unhealthy);
 
         }
     }
