@@ -15,6 +15,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using VersioningService.Middlewares;
+using VersioningService.HealthChecks;
 
 namespace VersioningService
 {
@@ -84,13 +85,14 @@ namespace VersioningService
                     options.UIPath = "/healthchek-ui";
                     options.AddCustomStylesheet("./healthchecks/custom.css");
                 });
+                // Health Cheks recommended here: https://tlvconfluence01.nice.com/display/IN/GEN+ADR4:+Health+Check+Endpoints
                 // endpoints.MapHealthChecks("/health", new HealthCheckOptions() { Predicate = (_) => false });
-                // endpoints.MapHealthChecks("/healthcheck", new HealthCheckOptions() { Predicate = (_) => false });
-                // endpoints.MapHealthChecks("/probe/healthcheck", new HealthCheckOptions() { Predicate = (_) => false });
-                // endpoints.MapHealthChecks("/probe/host", new HealthCheckOptions() { Predicate = (check) => check.Tags.Contains("host"), ResponseWriter = ResponseWritters.HostProbeWriter });
-                // endpoints.MapHealthChecks("/activecheck", new HealthCheckOptions() { Predicate = (check) => check.Tags.Contains("host"), ResponseWriter = ResponseWritters.HostProbeWriter });
-                // endpoints.MapHealthChecks("/probe/ready", new HealthCheckOptions() { Predicate = (check) => check.Tags.Contains("ready") });
-                // endpoints.MapHealthChecks("/probe/healthreport", new HealthCheckOptions() { Predicate = (check) => check.Tags.Contains("ready"), ResponseWriter = ResponseWritters.HealthReportWriter });
+                endpoints.MapHealthChecks("/healthcheck", new HealthCheckOptions() { Predicate = (_) => false });
+                endpoints.MapHealthChecks("/probe/healthcheck", new HealthCheckOptions() { Predicate = (_) => false });
+                endpoints.MapHealthChecks("/probe/host", new HealthCheckOptions() { Predicate = (check) => check.Tags.Contains("host"), ResponseWriter = ResponseWritters.HostProbeWriter });
+                endpoints.MapHealthChecks("/activecheck", new HealthCheckOptions() { Predicate = (check) => check.Tags.Contains("host"), ResponseWriter = ResponseWritters.HostProbeWriter });
+                endpoints.MapHealthChecks("/probe/ready", new HealthCheckOptions() { Predicate = (check) => check.Tags.Contains("ready") });
+                endpoints.MapHealthChecks("/probe/healthreport", new HealthCheckOptions() { Predicate = (check) => check.Tags.Contains("ready"), ResponseWriter = ResponseWritters.HealthReportWriter });
             });
 
             app.ConfigureSwagger(provider);
