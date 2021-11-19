@@ -82,7 +82,7 @@ namespace VersioningService
                 app.UseHealthChecksUI(delegate (Options options)
                 {
                     options.UIPath = "/healthchek-ui";
-                    //options.AddCustomStylesheet("./healthcheck/custom.css");
+                    options.AddCustomStylesheet("./healthchecks/custom.css");
                 });
                 // endpoints.MapHealthChecks("/health", new HealthCheckOptions() { Predicate = (_) => false });
                 // endpoints.MapHealthChecks("/healthcheck", new HealthCheckOptions() { Predicate = (_) => false });
