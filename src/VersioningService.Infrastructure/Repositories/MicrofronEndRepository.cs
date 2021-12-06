@@ -20,7 +20,7 @@ namespace VersioningService.Infrastructure.Repositories
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        public Task<bool> CreateMicrofronEnd(MicrofronEnd mfe)
+        public Task<MicrofronEnd> CreateMicrofronEnd(MicrofronEnd mfe)
         {
             throw new NotImplementedException();
         }
@@ -37,6 +37,11 @@ namespace VersioningService.Infrastructure.Repositories
         }
 
         public Task<MicrofronEnd> GetMicrofronEndById(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> UpdateMicrofronEnd(Guid id, MicrofronEnd mfe)
         {
             throw new NotImplementedException();
         }

@@ -11,8 +11,10 @@ namespace VersioningService.Core.Interfaces.Services
 
         Task<MicrofronEnd> GetMicrofronEndById(Guid id);
 
-        Task<bool> CreateMicrofronEnd(MicrofronEnd mfe);
+        Task<MicrofronEnd> CreateMicrofronEnd(MicrofronEnd mfe);
 
         Task<bool> DeleteMicrofrontEnd(Guid id);
+
+        Task<bool> UpdateMicrofrontEnd(Guid id, MicrofronEnd mfe);
     }
 }

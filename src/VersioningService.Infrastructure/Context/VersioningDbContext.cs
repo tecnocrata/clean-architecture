@@ -5,10 +5,11 @@ using VersioningService.Infrastructure.Entities;
 
 namespace VersioningService.Infrastructure.Context
 {
-    public class VersioningDbContext: DbContext
+    public class VersioningDbContext : DbContext
     {
-        public VersioningDbContext(DbContextOptions<VersioningDbContext> options): base(options)
+        public VersioningDbContext(DbContextOptions<VersioningDbContext> options) : base(options)
         {
+            // Not required if you are going to use DB-First strategy or DB seeding
             SeedData();
         }
 

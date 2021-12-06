@@ -19,7 +19,7 @@ namespace VersioningService.Core.Services
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public Task<bool> CreateMicrofronEnd(MicrofronEnd mfe)
+        public Task<MicrofronEnd> CreateMicrofronEnd(MicrofronEnd mfe)
         {
             throw new NotImplementedException();
         }
@@ -46,6 +46,11 @@ namespace VersioningService.Core.Services
         }
 
         public Task<MicrofronEnd> GetMicrofronEndById(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> UpdateMicrofrontEnd(Guid id, MicrofronEnd mfe)
         {
             throw new NotImplementedException();
         }
