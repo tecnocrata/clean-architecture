@@ -3,6 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace VersioningService.Infrastructure.Entities
 {
+    /// <summary>
+    /// This is a DataBase model, it is tied to the ORM and DB particularities
+    /// </summary>
     public class MicrofrontEnd
     {
         public MicrofrontEnd()

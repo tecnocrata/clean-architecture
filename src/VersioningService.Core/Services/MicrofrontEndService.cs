@@ -19,14 +19,14 @@ namespace VersioningService.Core.Services
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public Task<MicrofronEnd> CreateMicrofronEnd(MicrofronEnd mfe)
+        public async Task<MicrofronEnd> CreateMicrofronEnd(MicrofronEnd mfe)
         {
-            throw new NotImplementedException();
+            return await _mfeRepository.CreateMicrofronEnd(mfe);
         }
 
-        public Task<bool> DeleteMicrofrontEnd(Guid id)
+        public async Task<bool> DeleteMicrofrontEnd(Guid id)
         {
-            throw new NotImplementedException();
+            return await _mfeRepository.DeleteMicrofrontEnd(id);
         }
 
         public async Task<IEnumerable<MicrofronEnd>> GetAllMicrofrontEnds()
@@ -41,18 +41,16 @@ namespace VersioningService.Core.Services
                 logger.LogError($"Error while trying to call GetAllMicrofrontends in the service class, error = {ex}");
                 throw;
             }
-
-
         }
 
-        public Task<MicrofronEnd> GetMicrofronEndById(Guid id)
+        public async Task<MicrofronEnd> GetMicrofronEndById(Guid id)
         {
-            throw new NotImplementedException();
+            return await _mfeRepository.GetMicrofronEndById(id);
         }
 
-        public Task<bool> UpdateMicrofrontEnd(Guid id, MicrofronEnd mfe)
+        public async Task<bool> UpdateMicrofrontEnd(Guid id, MicrofronEnd mfe)
         {
-            throw new NotImplementedException();
+            return await _mfeRepository.UpdateMicrofronEnd(id, mfe);
         }
     }
 }

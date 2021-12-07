@@ -30,8 +30,8 @@ namespace VersioningService.V1.Controllers
         // [SwaggerOperation("GetMicrofrontEnds")]
         // [Route("getMicrofrontEnds")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]// (typeof(ApiErrorResponse), 401)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]// (typeof(ApiErrorResponse), 401)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<IEnumerable<MicrofronEnd>>> Get()
         {
@@ -46,27 +46,66 @@ namespace VersioningService.V1.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<MicrofronEnd>> Get(Guid id)
         {
-            return "value";
+            var mfe = await _mfeService.GetMicrofronEndById(id);
+            return mfe != null ? Ok(mfe) : NotFound();
         }
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<MicrofronEnd>> Post(MicrofronEnd mfe) //[FromBody] string value
         {
+            if (!ModelState.IsValid) // This will be replaced by FluentValidation
+            {
+                return BadRequest();
+            }
+            var response = await _mfeService.CreateMicrofronEnd(mfe);
+            // return CreatedAtRoute(nameof(Get), new {Id = response.id} response);
+            // return CreatedAtRoute(nameof(Get), response);
+            return CreatedAtAction(nameof(Get), new { version = HttpContext.GetRequestedApiVersion().ToString(), controller = "MicrofrontEnds" }, response);
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<bool>> Put(Guid id, MicrofronEnd mfe) //[FromBody] string value
         {
+            if (!ModelState.IsValid) // This will be replaced by FluentValidation
+            {
+                return BadRequest();
+            }
+            return await _mfeService.UpdateMicrofrontEnd(id, mfe).ConfigureAwait(false);
         }
 
         // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{id}", Name = "DeleteMicrofrontEnd")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<bool>> Delete(Guid id)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            return await _mfeService.DeleteMicrofrontEnd(id);
         }
     }
 }

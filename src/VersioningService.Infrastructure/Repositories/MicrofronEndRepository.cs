@@ -20,30 +20,61 @@ namespace VersioningService.Infrastructure.Repositories
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        public Task<MicrofronEnd> CreateMicrofronEnd(MicrofronEnd mfe)
+        public async Task<MicrofronEnd> CreateMicrofronEnd(MicrofronEnd mfe)
         {
-            throw new NotImplementedException();
+            var dbMfe = _mapper.Map<Entities.MicrofrontEnd>(mfe);
+            dbMfe.PublishedAt = DateTime.Now;
+            await _dbContext.MicrofronEnds.AddAsync(dbMfe);
+            await _dbContext.SaveChangesAsync();
+            return mfe;
         }
 
-        public Task<bool> DeleteMicrofrontEnd(Guid id)
+        public async Task<bool> DeleteMicrofrontEnd(Guid id)
         {
-            throw new NotImplementedException();
+            var dbMfe = await _dbContext.MicrofronEnds.FindAsync(id); //.SingleOrDefaultAsync(m => m.Id == id);
+            if (dbMfe != null)
+            {
+                _dbContext.MicrofronEnds.Remove(dbMfe);
+                // Commit the transaction
+                await _dbContext.SaveChangesAsync();
+                return true;
+            }
+            return false;
         }
 
         public async Task<IEnumerable<MicrofronEnd>> GetAllMicrofrontEnds()
         {
             var mfes = await _dbContext.MicrofronEnds.ToListAsync().ConfigureAwait(false);
+            //TODO: What about if mfes is null?
             return _mapper.Map<IEnumerable<MicrofronEnd>>(mfes);
         }
 
-        public Task<MicrofronEnd> GetMicrofronEndById(Guid id)
+        public async Task<MicrofronEnd> GetMicrofronEndById(Guid id)
         {
-            throw new NotImplementedException();
+            var mfe = await _dbContext.MicrofronEnds.FindAsync(id);
+            if (mfe != null) return _mapper.Map<MicrofronEnd>(mfe);
+            return null;
         }
 
-        public Task<bool> UpdateMicrofronEnd(Guid id, MicrofronEnd mfe)
+        public async Task<bool> UpdateMicrofronEnd(Guid id, MicrofronEnd mfe)
         {
-            throw new NotImplementedException();
+            var dbMfe = await _dbContext.MicrofronEnds.FindAsync(id); //.SingleOrDefaultAsync(m => m.Id == id);
+            if (dbMfe == null || dbMfe.Id != id)
+            {
+                return false;
+            }
+            if (mfe != null)
+            {
+                dbMfe.Name = mfe.Name;
+                dbMfe.Url = mfe.Url;
+                dbMfe.Version = mfe.Version;
+                dbMfe.PublishedAt = DateTime.Now;
+                _dbContext.MicrofronEnds.Update(dbMfe);
+                //Commit the transaction
+                await _dbContext.SaveChangesAsync();
+                return true;
+            }
+            return false;
         }
     }
 }
