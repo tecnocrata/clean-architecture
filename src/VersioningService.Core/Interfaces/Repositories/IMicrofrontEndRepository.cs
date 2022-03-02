@@ -16,5 +16,7 @@ namespace VersioningService.Core.Interfaces.Repositories
         Task<bool> DeleteMicrofrontEnd(Guid id);
 
         Task<bool> UpdateMicrofronEnd(Guid id, MicrofronEnd mfe);
+
+        //Task<List<MicrofronEnd>> SearchMicrofrontEnds(Criteria criteria);
     }
 }

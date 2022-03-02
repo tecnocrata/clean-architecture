@@ -66,7 +66,7 @@ namespace VersioningService.Infrastructure.Repositories
             if (mfe != null)
             {
                 dbMfe.Name = mfe.Name;
-                dbMfe.Url = mfe.Url;
+                dbMfe.Url = mfe.Url.Value;
                 dbMfe.Version = mfe.Version;
                 dbMfe.PublishedAt = DateTime.Now;
                 _dbContext.MicrofronEnds.Update(dbMfe);
