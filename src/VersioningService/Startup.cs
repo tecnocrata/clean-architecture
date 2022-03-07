@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using HealthChecks.UI.Client;
 using HealthChecks.UI.Configuration;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
@@ -14,8 +14,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using VersioningService.Middlewares;
 using VersioningService.HealthChecks;
+using VersioningService.Middlewares;
 
 namespace VersioningService
 {
@@ -63,7 +63,7 @@ namespace VersioningService
                 app.UseHsts();
             }
 
-            //app.ConfigureSwagger(provider);
+            // app.ConfigureSwagger(provider);
 
             app.UseHttpsRedirection();
 
@@ -82,7 +82,7 @@ namespace VersioningService
                 });
                 app.UseHealthChecksUI(delegate (Options options)
                 {
-                    options.UIPath = "/healthchek-ui";
+                    options.UIPath = "/healthcheck-ui";
                     options.AddCustomStylesheet("./healthchecks/custom.css");
                 });
                 // Health Cheks recommended here: https://tlvconfluence01.nice.com/display/IN/GEN+ADR4:+Health+Check+Endpoints
