@@ -16,5 +16,5 @@ You can lunch the swagger documentation using this url: `https://localhost:19726
 
 ## Health check urls
 
-- UI Via Browser: https://localhost:19726/healthchek-ui
+- UI Via Browser: https://localhost:19726/healthcheck-ui
 - Via Postman or GET: https://localhost:19726/health
