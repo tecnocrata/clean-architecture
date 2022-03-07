@@ -95,9 +95,9 @@ namespace VersioningService
                 endpoints.MapHealthChecks("/probe/healthreport", new HealthCheckOptions() { Predicate = (check) => check.Tags.Contains("ready"), ResponseWriter = ResponseWritters.HealthReportWriter });
             });
 
-            app.ConfigureSwagger(provider);
-            //app.ConfigureSwagger2(provider);
+            app.UseSwagger(provider);
 
+            // app.UseSwagger2(provider);
         }
     }
 }

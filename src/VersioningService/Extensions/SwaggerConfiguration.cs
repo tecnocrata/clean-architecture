@@ -56,7 +56,8 @@ namespace VersioningService
             return services;
         }
 
-        public static IApplicationBuilder ConfigureSwagger(this IApplicationBuilder app, IApiVersionDescriptionProvider provider)
+        // Previous name: ConfigureSwagger
+        public static IApplicationBuilder UseSwagger(this IApplicationBuilder app, IApiVersionDescriptionProvider provider)
         {
             if (app is null)
             {

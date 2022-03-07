@@ -58,7 +58,8 @@ public static class SwaggerConfiguration2
         }
     }
 
-    public static IApplicationBuilder ConfigureSwagger2(this IApplicationBuilder app, IApiVersionDescriptionProvider provider)
+    // Previous name: ConfigureSwagger2
+    public static IApplicationBuilder UseSwagger2(this IApplicationBuilder app, IApiVersionDescriptionProvider provider)
     {
         if (app is null)
         {
